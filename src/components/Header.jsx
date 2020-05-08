@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Auth from './Auth';
 
 const Header = () => (
 	<div className="ui secondary pointing menu">
@@ -7,9 +8,8 @@ const Header = () => (
 			Streamer
 		</Link>
 		<div className="right menu">
-			<Link to="/" className="item">
-				All Streams
-			</Link>
+			<Auth />
+			<Link to="/" className="item" />
 		</div>
 	</div>
 );
