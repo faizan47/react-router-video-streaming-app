@@ -31,7 +31,6 @@ class Auth extends Component {
 			console.log(this.props);
 		} else {
 			this.props.trySignOut();
-			console.log(this.props);
 		}
 	};
 	render() {
