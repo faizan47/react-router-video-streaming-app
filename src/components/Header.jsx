@@ -4,7 +4,7 @@ import Auth from './Auth';
 
 const Header = () => (
 	<div className="ui secondary pointing menu">
-		<Link to="/" className="item">
+		<Link to="/" className="ui teal tag label">
 			Streamer
 		</Link>
 		<div className="right menu">
