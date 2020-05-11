@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom';
 
 class StreamList extends React.Component {
 	componentDidMount() {
-		this.props.getAllStreams();
+		this.props.getAllS~treams();
 	}
 	renderStreamUpdate = stream => {
 		if (this.props.currentUserId === stream.userId && this.props.isSignedIn) {
 			return (
 				<div className="right floated content">
-					<button className="ui primary button">Edit</button>
+					<Link to={`/streams/edit/${stream.id}`} className="ui primary button">
+						Edit
+					</Link>
 					<button className="ui negative button">Delete</button>
 				</div>
 			);
@@ -27,8 +29,8 @@ class StreamList extends React.Component {
 		}
 	};
 	renderStreams = () => {
-		return this.props.streams.map(stream => (
-			<div key={stream.id} className="item">
+		return this.props.streams.map((stream, i) => (
+			<div key={i} className="item">
 				{this.renderStreamUpdate(stream)}
 				<i className="large middle aligned icon video" />
 				<div className="content">
@@ -40,12 +42,16 @@ class StreamList extends React.Component {
 	};
 
 	render() {
-		return (
-			<div className="ui relaxed divided list">
-				{this.renderStreams()}
-				{this.renderCreateLink()}
-			</div>
-		);
+		if (!this.props.streams.length) {
+			return <div className="ui active inline loader" />;
+		} else {
+			return (
+				<div className="ui relaxed divided list">
+					{this.renderStreams()}
+					{this.renderCreateLink()}
+				</div>
+			);
+		}
 	}
 }
 const mapStateToProps = state => {
