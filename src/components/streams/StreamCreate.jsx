@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 class StreamCreate extends Component {
 	onFormSubmit = formValues => {
-		console.log(formValues);
 		this.props.createStream({ ...formValues, userId: this.props.currentUserId });
 	};
 	render() {

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-// import { connect } from 'react-redux';
-// import { createStream } from '../../actions';
 
 class streamForm extends Component {
 	renderError = ({ error, touched }) => {
@@ -24,7 +22,8 @@ class streamForm extends Component {
 		);
 	};
 	onFormSubmit = formValues => {
-		this.props.onSubmit({ ...formValues, userId: this.props.currentUserId });
+		// console.log(formValues);
+		this.props.onSubmit(formValues);
 	};
 	render() {
 		return (
@@ -43,12 +42,6 @@ const validate = ({ title, description }) => {
 	if (!description) errors.description = 'A description is required.';
 	return errors;
 };
-
-// const mapStatetoProps = state => {
-// 	return {
-// 		currentUserId: state.auth.userId
-// 	};
-// };
 
 export default reduxForm({
 	form: 'streamForm',

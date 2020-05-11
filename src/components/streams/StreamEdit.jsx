@@ -13,12 +13,16 @@ class StreamEdit extends Component {
 		this.props.updateStream(streamInfo, this.props.match.params.id);
 	};
 	render() {
-		return (
-			<div>
-				<h3>Edit a Stream</h3>
-				<StreamForm initialValues={this.props.currentStream} onSubmit={this.onFormSubmit} />
-			</div>
-		);
+		if (!this.props.currentStream) {
+			return <div className="ui active inline loader" />;
+		} else {
+			return (
+				<div>
+					<h3>Edit a Stream</h3>
+					<StreamForm initialValues={this.props.currentStream} onSubmit={this.onFormSubmit} />
+				</div>
+			);
+		}
 	}
 }
 const mapStatetoProps = state => {
