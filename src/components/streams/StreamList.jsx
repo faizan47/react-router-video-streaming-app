@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 class StreamList extends React.Component {
 	componentDidMount() {
-		this.props.getAllS~treams();
+		this.props.getAllStreams();
 	}
 	renderStreamUpdate = stream => {
 		if (this.props.currentUserId === stream.userId && this.props.isSignedIn) {
