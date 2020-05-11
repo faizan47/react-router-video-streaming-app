@@ -25,9 +25,9 @@ class StreamEdit extends Component {
 		}
 	}
 }
-const mapStatetoProps = state => {
+const mapStatetoProps = (state, ownProps) => {
 	return {
-		currentStream: state.streams.streamInfo
+		currentStream: state.streams[ownProps.match.params.id]
 	};
 };
 

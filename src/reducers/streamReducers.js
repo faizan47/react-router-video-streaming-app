@@ -3,7 +3,9 @@ import { mapKeys } from 'lodash';
 
 export const streamReducers = (state = {}, action) => {
 	if (action.type === CREATE_STREAM || action.type === UPDATE_STREAM || action.type === GET_STREAM) {
-		return { ...state, streamInfo: action.payload };
+		console.log(action.payload, 'AA');
+
+		return { ...state, [action.payload.id]: action.payload };
 	} else if (action.type === GET_ALL_STREAMS) {
 		return { ...state, ...mapKeys(action.payload, 'id') };
 	} else {
