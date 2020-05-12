@@ -1,14 +1,20 @@
-import { CREATE_STREAM, GET_STREAM, UPDATE_STREAM, GET_ALL_STREAMS } from '../types';
+import { CREATE_STREAM, GET_STREAM, UPDATE_STREAM, GET_ALL_STREAMS, DELETE_STREAM } from '../types';
 import { mapKeys } from 'lodash';
+import { omit } from 'lodash';
 
 export const streamReducers = (state = {}, action) => {
-	if (action.type === CREATE_STREAM || action.type === UPDATE_STREAM || action.type === GET_STREAM) {
-		console.log(action.payload, 'AA');
-
-		return { ...state, [action.payload.id]: action.payload };
-	} else if (action.type === GET_ALL_STREAMS) {
-		return { ...state, ...mapKeys(action.payload, 'id') };
-	} else {
-		return state;
+	switch (action.type) {
+		case CREATE_STREAM || UPDATE_STREAM || GET_STREAM:
+			return { ...state, [action.payload.id]: action.payload };
+		// case UPDATE_STREAM:
+		// 	return { ...state, [action.payload.id]: action.payload };
+		// case GET_STREAM:
+		// 	return { ...state, [action.payload.id]: action.payload };
+		case DELETE_STREAM:
+			return omit(state, action.payload);
+		case GET_ALL_STREAMS:
+			return { ...state, ...mapKeys(action.payload, 'id') };
+		default:
+			return state;
 	}
 };
