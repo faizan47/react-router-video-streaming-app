@@ -14,9 +14,9 @@ class StreamList extends React.Component {
 					<Link to={`/streams/edit/${stream.id}`} className="ui primary button">
 						Edit
 					</Link>
-					<Link to={`/streams/delete/${stream.id}`} className="ui negative button">
+					<div to={`/streams/delete/${stream.id}`} className="ui negative button">
 						Delete
-					</Link>
+					</div>
 				</div>
 			);
 		}
@@ -31,12 +31,14 @@ class StreamList extends React.Component {
 		}
 	};
 	renderStreams = () => {
-		return this.props.streams.map((stream, i) => (
-			<div key={i} className="item">
+		return this.props.streams.map(stream => (
+			<div key={stream.id} className="item">
 				{this.renderStreamUpdate(stream)}
 				<i className="large middle aligned icon video" />
 				<div className="content">
-					<div className="header">{stream.title}</div>
+					<Link to={`/streams/${stream.id}`} className="header">
+						{stream.title}
+					</Link>
 					<div className="description">{stream.description}</div>
 				</div>
 			</div>
